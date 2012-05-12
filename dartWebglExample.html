@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>dartWebglExample</title>
+  </head>
+  <body>
+    <h1>dartWebglExample</h1>
+    <h2 id="status">dart is not running</h2>
+    <script type="application/dart" src="dartWebglExample.dart"></script>
+    <script src="http://dart.googlecode.com/svn/branches/bleeding_edge/dart/client/dart.js"></script>
+    
+
+<canvas id='world' width='256px' height='256px'></canvas>
+<script id='vshader' type='x-shader/x-vertex'>
+    #ifdef GL_ES
+	precision highp float;
+	#endif
+
+	attribute vec3 position;
+	attribute vec4 color;
+
+	varying vec4 f_color;
+
+	void main() {
+		f_color = color;	
+		gl_Position = vec4(position, 1.0);
+	}
+</script>
+<script id='fshader' type='x-shader/x-fragment'>
+	#ifdef GL_ES
+	precision highp float;
+	#endif
+
+	varying vec4 f_color;
+
+	void main() {
+		gl_FragColor = f_color;
+	}
+</script>
+  </body>
+</html>
